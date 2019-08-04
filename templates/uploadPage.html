@@ -3,18 +3,28 @@
 <title>Translation Hero</title>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <style>
-body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif}
-.w3-bar,h1,button {font-family: "Montserrat", sans-serif}
-.fa-anchor,.fa-coffee {font-size:200px}
-.dropdown, select, option {
-    max-height:50px;
-    overflow:auto;
-}
+  body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif}
+  .w3-bar,h1,button {font-family: "Montserrat", sans-serif}
+  .fa-anchor,.fa-coffee {font-size:200px}
+  .dropdown, select, option {
+      max-height:50px;
+      overflow:auto;
+  }
+  .center-block {
+  margin: auto;
+  display: block;
+  }
+
+  .inline {
+    display: inline-block;
+  }
+
 </style>
 <link href="https://gist.githubusercontent.com/jharding/9458816/raw/77276289fbdb910faae7bcf06bb530d76d2264dd/scrollable-dropdown-menu.css" rel="stylesheet" type="text/css">
 <body>
@@ -38,8 +48,6 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif}
 <!-- Header -->
 <header class="w3-container w3-red w3-center" style="padding:128px 16px">
   <h1 class="w3-margin w3-jumbo">TRANSLATION HERO</h1>
-  <p class="w3-xlarge">&nbsp;</p>
-  <button class="w3-button w3-black w3-padding-large w3-large w3-margin-top">Get Started</button>
 </header>
 
 
@@ -48,68 +56,27 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif}
 <div class="w3-row-padding w3-padding-64 w3-container">
 <div class="w3-content">
   <div class="w3-100%">
-      <h1>Translate here </h1>
-    from 
-    <span class="dropdown">
-    <select>
-        <option value="volvo">Volvo</option>
-        <option value="saab">Saab</option>
-        <option value="mercedes">Mercedes</option>
-        <option value="audi">Audi</option>
-    </select> 
-    </span>
-    to 	
-    <span>	
-    <select>
-        <option value="volvo">Volvo</option>
-        <option value="saab">Saab</option>
-        <option value="mercedes">Mercedes</option>
-        <option value="audi">Audi</option>
-        <option value="volvo">Volvo</option>
-        <option value="saab">Saab</option>
-        <option value="mercedes">Mercedes</option>
-        <option value="audi">Audi</option>
-    </select>
-    </span>
- 
-	  
-
-
+      <h1 class="center-block">Choose a language:</h1>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      <form class="center-block" id="form1" action="{{ url_for('upload') }}" method="POST" enctype="multipart/form-data">
+      <select name="userLanguage">>
+        {% for value in languages.items() %}
+          <option value="{{ value[1] }}">{{ value[1] }}</option>
+        {% endfor %}
+      </select> 
+    </form>
 
     <div class="w3-third w3-center"> </div>
   </div>
 </div>
 
 <!-- Second Grid -->
-<div class="w3-row-padding w3-light-grey w3-padding-64 w3-container">
-  <div class="w3-content">
-    <div class="w3-third w3-center"> </div>
 
-    <div class="w3-twothird"> </div>
-  </div>
-</div>
-
-<div class="w3-container w3-black w3-center w3-opacity w3-padding-64">
-  <h1 class="w3-margin w3-xlarge">&nbsp;</h1>
-</div>
-
+</br>
 <form id="upload-form" action="{{ url_for('upload') }}" method="POST" enctype="multipart/form-data">
-  <input type="file" name="file" accept="image/*" multiple>
-  <input type="submit" value="send">
+  <input class="center-block w3-button w3-black w3-padding-large w3-large w3-margin-top" type="file" name="file" accept="image/*" multiple>
+  <input class="center-block w3-button w3-black w3-padding-large w3-large w3-margin-top" type="submit" value="Submit">
 </form>
-
-<!-- Footer -->
-<footer class="w3-container w3-padding-64 w3-center w3-opacity">  
-  <div class="w3-xlarge w3-padding-32">
-    <i class="fa fa-facebook-official w3-hover-opacity"></i>
-    <i class="fa fa-instagram w3-hover-opacity"></i>
-    <i class="fa fa-snapchat w3-hover-opacity"></i>
-    <i class="fa fa-pinterest-p w3-hover-opacity"></i>
-    <i class="fa fa-twitter w3-hover-opacity"></i>
-    <i class="fa fa-linkedin w3-hover-opacity"></i>
- </div>
- <p>Powered by <a href="https://www.w3schools.com/w3css/default.asp" target="_blank">w3.css</a></p>
-</footer>
 
 <script>
 // Used to toggle the menu on small screens when clicking on the menu button
@@ -122,6 +89,10 @@ function myFunction() {
   }
 }
 </script>
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 
 </body>
 </html>

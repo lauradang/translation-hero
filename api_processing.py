@@ -46,7 +46,6 @@ def detect_image(user_language):
     # The text to translate
     text = (theword)
 
-    # Translates some text into Russian
     translation = translate_client.translate(
         text,
         target_language=target)
