@@ -59,5 +59,3 @@ def detect_image(user_language):
     }
 
     return final_dict
-
-

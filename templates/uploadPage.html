@@ -1,13 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
+
+  <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+  <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+  <link href="{{ url_for('static', filename='style/style.css') }}" rel="stylesheet">
+</head>
+
 <title>Translation Hero</title>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <style>
   body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif}
   .w3-bar,h1,button {font-family: "Montserrat", sans-serif}
@@ -17,8 +25,12 @@
       overflow:auto;
   }
   .center-block {
-  margin: auto;
-  display: block;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+    text-align: center;
+
   }
 
   .inline {
@@ -26,60 +38,61 @@
   }
 
 </style>
-<link href="https://gist.githubusercontent.com/jharding/9458816/raw/77276289fbdb910faae7bcf06bb530d76d2264dd/scrollable-dropdown-menu.css" rel="stylesheet" type="text/css">
 <body>
 
 <!-- Navbar -->
 <div class="w3-top">
-    <div class="w3-bar w3-red w3-card w3-left-align w3-large">
-      <a class="w3-bar-item w3-button w3-hide-medium w3-hide-large w3-right w3-padding-large w3-hover-white w3-large w3-red" href="javascript:void(0);" onclick="myFunction()" title="Toggle Navigation Menu"><i class="fa fa-bars"></i></a>
-      <a href="#" class="w3-bar-item w3-button w3-padding-large w3-red"><a href="home.html">Home</a></a>
+    <div style="background-color:blue; color: #FFFFFF;" class="w3-bar w3-card w3-left-align w3-large">
+      <img style="transform: scale(0.8);" class="inline" src="{{ logo }}">
+      <h1 style="font-style: bold" class="inline">Translation Hero</h1>
     </div>
-
-  <!-- Navbar on small screens -->
-  <div id="navDemo" class="w3-bar-block w3-white w3-hide w3-hide-large w3-hide-medium w3-large">
-    <a href="#" class="w3-bar-item w3-button w3-padding-large">Link 1</a>
-    <a href="#" class="w3-bar-item w3-button w3-padding-large">Link 2</a>
-    <a href="#" class="w3-bar-item w3-button w3-padding-large">Link 3</a>
-    <a href="#" class="w3-bar-item w3-button w3-padding-large">Link 4</a>
-  </div>
 </div>
-
-<!-- Header -->
-<header class="w3-container w3-red w3-center" style="padding:128px 16px">
-  <h1 class="w3-margin w3-jumbo">TRANSLATION HERO</h1>
-</header>
-
 
 <!-- First Grid -->
-	
-<div class="w3-row-padding w3-padding-64 w3-container">
-<div class="w3-content">
-  <div class="w3-100%">
-      <h1 class="center-block">Choose a language:</h1>
-      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-      <form class="center-block" id="form1" action="{{ url_for('upload') }}" method="POST" enctype="multipart/form-data">
-      <select name="userLanguage">>
-        {% for value in languages.items() %}
-          <option value="{{ value[1] }}">{{ value[1] }}</option>
-        {% endfor %}
-      </select> 
-    </form>
+</br>
+</br>
+</br>
+</br>
 
-    <div class="w3-third w3-center"> </div>
+<div class="w3-row-padding w3-padding-64 w3-container">
+  <div class="w3-content">
+      <h2 class="center-block">Choose a language:</h2>
+    <div class="w3-100%">
+        <form id="form1" action="{{ url_for('upload') }}" method="POST" enctype="multipart/form-data">
+        <select class="center-block" name="userLanguage">
+          {% for value in languages.items() %}
+            <option value="{{ value[1] }}">{{ value[1] }}</option>
+          {% endfor %}
+        </select> 
+
+        </br>
+        </br>
+
+        <script class="jsbin" src="https://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+        <div class="file-upload">
+          <form id="upload-form" action="{{ url_for('upload') }}" method="POST" enctype="multipart/form-data">
+            <button class="file-upload-btn" type="button" onclick="$('.file-upload-input').trigger( 'click' )">Add Image</button>
+            <div class="image-upload-wrap">
+              <input class="file-upload-input" name="file" type='file' onchange="readURL(this);" accept="image/*" multiple/>
+              <div class="drag-text">
+                <h3>Drag and drop a file</h3>
+              </div>
+            </div>
+            <div class="file-upload-content">
+              <img class="file-upload-image" src="#" alt="your image" />
+              <div class="image-title-wrap">
+                <button type="button" onclick="removeUpload()" class="remove-image">Remove <span class="image-title">Uploaded Image</span></button>
+              </div>
+            </div>
+            <input class="center-block w3-button w3-blue w3-padding-large w3-large w3-margin-top" type="submit" value="Submit">
+          </div>
+          </form>
+      <div class="w3-third w3-center"> </div>
+    </div>
   </div>
 </div>
 
-<!-- Second Grid -->
-
-</br>
-<form id="upload-form" action="{{ url_for('upload') }}" method="POST" enctype="multipart/form-data">
-  <input class="center-block w3-button w3-black w3-padding-large w3-large w3-margin-top" type="file" name="file" accept="image/*" multiple>
-  <input class="center-block w3-button w3-black w3-padding-large w3-large w3-margin-top" type="submit" value="Submit">
-</form>
-
 <script>
-// Used to toggle the menu on small screens when clicking on the menu button
 function myFunction() {
   var x = document.getElementById("navDemo");
   if (x.className.indexOf("w3-show") == -1) {
@@ -90,9 +103,11 @@ function myFunction() {
 }
 </script>
 
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+<script src="{{ url_for('static', filename='style/script.js') }}"></script>
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
 </body>
 </html>
