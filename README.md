@@ -5,6 +5,7 @@ A web application where users can upload an image and translate the object in th
 ## Built With
 
 * [Flask](https://www.fullstackpython.com/flask.html)
+* [Google Vision API](https://cloud.google.com/vision/)
 * CSS - Styling
 
 ## Author
