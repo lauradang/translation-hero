@@ -11,4 +11,5 @@ A web application where users can upload an image and translate the object in th
 
 ## Author
 
-Laura Dang
+First version of project was started at UofT Hacks VI by Laura Dang, Emmy Ni, Shu Shan, and Jason Liu.
+Revamped version finished by Laura Dang.
