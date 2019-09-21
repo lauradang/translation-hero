@@ -1,6 +1,6 @@
 # Translation Hero
 
-A web application where users can upload an image and translate the object in the image into any language they want. This project was conceptualized at UofT Hacks VI, and completed afterwards on my own time.
+A web application where users can upload an image and translate the object in the image into any language they want. This project was conceptualized at UofT Hacks VI, and redone afterwards on my own time.
 
 ## Built With
 
